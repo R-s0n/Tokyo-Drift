@@ -1,0 +1,805 @@
+<html>
+    <head>
+        <title>Big Mouth Billy - Tokyo Drift!!</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .row {
+                line-height: 0;
+            }
+            .wall {
+                background-color: blue;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+            }
+            .sushi {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/sushi.png');
+                background-size: contain;
+            }
+            .onigiri {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/onigiri.png');
+                background-size: contain;
+            }
+            .blank {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+            }
+            #ninjaman {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/billy3.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 40px;
+                top: 40px;
+            }
+            #score {
+                color: black;
+                position: absolute;
+                top: 0px;
+                left: 650px;
+                font-size: 24px;
+                font-weight: 1000;
+            }
+            #lives {
+                color: black;
+                position: absolute;
+                top: 0px;
+                left: 500px;
+                font-size: 19px;
+                font-weight: 1000;
+            }
+            #title {
+                color: black;
+                position: absolute;
+                top: 0px;
+                left: 25px;
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            #harrison {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/harrison.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 720px;
+                top: 720px;
+            }
+            #autumn {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/autumn.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 680px;
+                top: 720px;
+            }
+            #joey {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/joey_temp.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 640px;
+                top: 720px;
+            }
+            #mike {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/mike.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 600px;
+                top: 720px;
+            }
+            #mk {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/mk.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 560px;
+                top: 720px;
+            }
+            #levi {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/levi.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 520px;
+                top: 720px;
+            }
+            #hannah {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('img/hannah.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 480px;
+                top: 720px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='title'><h2>Tokyo Drift -- The Game</h2></div>
+        <div id='world'></div>
+        <div id='ninjaman'></div>
+        <div id='harrison'></div>
+        <div id='autumn'></div>
+        <div id='mike'></div>
+        <div id='mk'></div>
+        <div id='levi'></div>
+        <div id='joey'></div>
+        <div id='hannah'></div>
+        <div id='score'>
+            <h2>Score: </h2>
+        </div>
+        <div id='lives'>
+            <h2>Lives: </h2>
+        </div>
+    </body>
+    <script>
+        // Variables
+        var world = [];
+        var worldDict = {
+            0: 'blank',
+            1: 'wall',
+            2: 'sushi',
+            3: 'onigiri'
+        }
+        var ninjaman = {
+            x: 1,
+            y: 1
+        }
+        var hannah = {
+            x: 12,
+            y: 18
+        }
+        var levi = {
+            x: 13,
+            y: 18
+        }
+        var mk = {
+            x: 14,
+            y: 18
+        }
+        var mike = {
+            x: 15,
+            y: 18
+        }
+        var joey = {
+            x: 16,
+            y: 18
+        }
+        var autumn = {
+            x: 17,
+            y: 18
+        }
+        var harrison = {
+            x: 18,
+            y: 18
+        }
+        var score = 0;
+        var lives = 3;
+        // Functions
+        function drawWorld(){
+            output = "";
+            for(var row = 0; row < world.length; row++){
+                output += "<div class = 'row'>";
+                for(var x = 0; x < world[row].length; x++){
+                    output += "<div class = '" + worldDict[world[row][x]] + "'></div>";
+                }
+                output += "</div>";
+            }
+            
+            document.getElementById('world').innerHTML = output;
+        }
+        function drawNinjaman(){
+            document.getElementById('ninjaman').style.top = ninjaman.y * 40 + 'px';
+            document.getElementById('ninjaman').style.left = ninjaman.x * 40 + 'px';
+        }
+        function updateScore(){
+            document.getElementById('score').innerHTML = "<h3>Score: " + score;
+        }
+        function updateLives(){
+            document.getElementById('lives').innerHTML = "<h2>Lives: " + lives;
+        }
+        function generateWorld(){
+            for (i = 0; i < 20; i++){
+                world.push([]);
+                for (x = 0; x < 20; x++){
+                    if (i === 0 || i == 19 || x === 0 || x === 19){
+                        world[i].push([1])
+                    }
+                    else{
+                        ran = Math.floor(Math.random() * 4)
+                        world[i].push([ran]);
+                    }
+                }
+            }
+            for (a = 1; a < 10; a++){
+                temp = Math.floor(Math.random() * 2);
+                if (temp === 0){
+                    world[a][1] = 3;
+                }
+                else{
+                    world[a][1] = 0;
+                }
+            }
+            for (a = 18; a > 9; a--){
+                temp = Math.floor(Math.random() * 2);
+                if (temp === 0){
+                    world[18][a] = 3;
+                }
+                else{
+                    world[18][a] = 0;
+                }
+            }
+            world[18][18] = 0;
+            world[1][1] = 0;
+        }
+        function clearIsolated(){
+            for (a = 1; a < 19; a++){
+                for (b = 1; b < 19; b++){
+                    if (world[a-1][b] == 1 && world[a+1][b] == 1 && world[a][b-1] == 1 && world[a][b+1] == 1){
+                        console.log("Got one!");
+                        world[a][b] = 1;
+                    }
+                }
+            }
+        }
+        function moveGhosts(){
+            rand = Math.floor(Math.random() * 7);
+            if (rand > 4){
+                moveAutumn();
+                console.log("moving autumn");
+            }
+            if (rand > 5){
+                moveHannah();
+                console.log("moving hannah");
+            }
+            if (rand < 3){
+                moveJoey();
+                console.log("moving joey");
+            }
+            if (rand < 4){
+                moveLevi();
+                console.log("moving levi");
+            }
+            if (rand > 2){
+                moveMike();
+                console.log("moving mike");
+            }
+            if (rand < 6){
+                moveMK();
+                console.log("moving mk");
+            }
+            if (rand < 3 || rand > 5){
+                moveHarrison();
+                console.log("moving harrison");
+            }
+        }
+        function moveAutumn(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("autumn.y: " + autumn.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && autumn.y > ninjaman.y+1 && world[autumn.y-1][autumn.x] != 1){
+                autumn.y--;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && autumn.x > ninjaman.x+1 && world[autumn.y][autumn.x-1] != 1){
+                autumn.x--;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && autumn.y < ninjaman.y-1 && world[autumn.y+1][autumn.x] != 1){
+                autumn.y++;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && autumn.x < ninjaman.x-1 && world[autumn.y][autumn.x+1] != 1){
+                autumn.x++;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[autumn.y-1][autumn.x] != 1){
+                autumn.y--;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[autumn.y+1][autumn.x] != 1){
+                autumn.y++;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[autumn.y][autumn.x-1] != 1){
+                autumn.x--;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[autumn.y][autumn.x+1] != 1){
+                autumn.x++;
+                document.getElementById('autumn').style.top = autumn.y * 40 + 'px';
+                document.getElementById('autumn').style.left = autumn.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveHannah(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("hannah.y: " + hannah.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && hannah.y > ninjaman.y+1 && world[hannah.y-1][hannah.x] != 1){
+                hannah.y--;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && hannah.x > ninjaman.x+1 && world[hannah.y][hannah.x-1] != 1){
+                hannah.x--;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && hannah.y < ninjaman.y-1 && world[hannah.y+1][hannah.x] != 1){
+                hannah.y++;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && hannah.x < ninjaman.x-1 && world[hannah.y][hannah.x+1] != 1){
+                hannah.x++;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[hannah.y-1][hannah.x] != 1){
+                hannah.y--;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[hannah.y+1][hannah.x] != 1){
+                hannah.y++;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[hannah.y][hannah.x-1] != 1){
+                hannah.x--;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[hannah.y][hannah.x+1] != 1){
+                hannah.x++;
+                document.getElementById('hannah').style.top = hannah.y * 40 + 'px';
+                document.getElementById('hannah').style.left = hannah.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveJoey(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("joey.y: " + joey.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && joey.y > ninjaman.y+1 && world[joey.y-1][joey.x] != 1){
+                joey.y--;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && joey.x > ninjaman.x+1 && world[joey.y][joey.x-1] != 1){
+                joey.x--;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && joey.y < ninjaman.y-1 && world[joey.y+1][joey.x] != 1){
+                joey.y++;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && joey.x < ninjaman.x-1 && world[joey.y][joey.x+1] != 1){
+                joey.x++;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[joey.y-1][joey.x] != 1){
+                joey.y--;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[joey.y+1][joey.x] != 1){
+                joey.y++;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[joey.y][joey.x-1] != 1){
+                joey.x--;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[joey.y][joey.x+1] != 1){
+                joey.x++;
+                document.getElementById('joey').style.top = joey.y * 40 + 'px';
+                document.getElementById('joey').style.left = joey.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveHarrison(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("harrison.y: " + harrison.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && harrison.y > ninjaman.y+1 && world[harrison.y-1][harrison.x] != 1){
+                harrison.y--;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && harrison.x > ninjaman.x+1 && world[harrison.y][harrison.x-1] != 1){
+                harrison.x--;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && harrison.y < ninjaman.y-1 && world[harrison.y+1][harrison.x] != 1){
+                harrison.y++;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && harrison.x < ninjaman.x-1 && world[harrison.y][harrison.x+1] != 1){
+                harrison.x++;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[harrison.y-1][harrison.x] != 1){
+                harrison.y--;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[harrison.y+1][harrison.x] != 1){
+                harrison.y++;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[harrison.y][harrison.x-1] != 1){
+                harrison.x--;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[harrison.y][harrison.x+1] != 1){
+                harrison.x++;
+                document.getElementById('harrison').style.top = harrison.y * 40 + 'px';
+                document.getElementById('harrison').style.left = harrison.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveLevi(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("levi.y: " + levi.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && levi.y > ninjaman.y+1 && world[levi.y-1][levi.x] != 1){
+                levi.y--;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && levi.x > ninjaman.x+1 && world[levi.y][levi.x-1] != 1){
+                levi.x--;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && levi.y < ninjaman.y-1 && world[levi.y+1][levi.x] != 1){
+                levi.y++;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && levi.x < ninjaman.x-1 && world[levi.y][levi.x+1] != 1){
+                levi.x++;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[levi.y-1][levi.x] != 1){
+                levi.y--;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[levi.y+1][levi.x] != 1){
+                levi.y++;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[levi.y][levi.x-1] != 1){
+                levi.x--;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[levi.y][levi.x+1] != 1){
+                levi.x++;
+                document.getElementById('levi').style.top = levi.y * 40 + 'px';
+                document.getElementById('levi').style.left = levi.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveMike(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("mike.y: " + mike.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && mike.y > ninjaman.y+1 && world[mike.y-1][mike.x] != 1){
+                mike.y--;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && mike.x > ninjaman.x+1 && world[mike.y][mike.x-1] != 1){
+                mike.x--;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && mike.y < ninjaman.y-1 && world[mike.y+1][mike.x] != 1){
+                mike.y++;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && mike.x < ninjaman.x-1 && world[mike.y][mike.x+1] != 1){
+                mike.x++;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[mike.y-1][mike.x] != 1){
+                mike.y--;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[mike.y+1][mike.x] != 1){
+                mike.y++;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[mike.y][mike.x-1] != 1){
+                mike.x--;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[mike.y][mike.x+1] != 1){
+                mike.x++;
+                document.getElementById('mike').style.top = mike.y * 40 + 'px';
+                document.getElementById('mike').style.left = mike.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function moveMK(){
+            rand = Math.floor(Math.random() * 12);
+            console.log("rand: " + rand);
+            console.log("mk.y: " + mk.y);
+            console.log("billy.y: " + ninjaman.y);
+            if (rand > 3 && mk.y > ninjaman.y+1 && world[mk.y-1][mk.x] != 1){
+                mk.y--;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("forced up");
+            }
+            else if (rand > 3 && mk.x > ninjaman.x+1 && world[mk.y][mk.x-1] != 1){
+                mk.x--;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("forced left");
+            }
+            if (rand > 3 && mk.y < ninjaman.y-1 && world[mk.y+1][mk.x] != 1){
+                mk.y++;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("forced down");
+            }
+            else if (rand > 3 && mk.x < ninjaman.x-1 && world[mk.y][mk.x+1] != 1){
+                mk.x++;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("forced right");
+            }
+            if (rand == 0 && world[mk.y-1][mk.x] != 1){
+                mk.y--;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("up");
+            }
+            if (rand == 1 && world[mk.y+1][mk.x] != 1){
+                mk.y++;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("down");
+            }
+            if (rand == 2 && world[mk.y][mk.x-1] != 1){
+                mk.x--;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("left");
+            }
+            if (rand == 3 && world[mk.y][mk.x+1] != 1){
+                mk.x++;
+                document.getElementById('mk').style.top = mk.y * 40 + 'px';
+                document.getElementById('mk').style.left = mk.x * 40 + 'px';
+                console.log("right");
+            }
+        }
+        function loseLife(){
+            if (ninjaman.x == harrison.x && ninjaman.y == harrison.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == autumn.x && ninjaman.y == autumn.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == hannah.x && ninjaman.y == hannah.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == joey.x && ninjaman.y == joey.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == mike.x && ninjaman.y == mike.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == mk.x && ninjaman.y == mk.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+            if (ninjaman.x == levi.x && ninjaman.y == levi.y){
+                lives--;
+                console.log("BILLY GOT HIT!!!!!!!  Lives left: " + lives);
+                if (lives < 1){
+                    location.replace("lose.html")
+                }
+            }
+        }
+        function checkWin(){
+            if (score >= 1000){
+                location.replace("win.html");
+            }
+        }
+        // Keystrokes
+        document.onkeydown = function(e){
+            if(e.keyCode == 37){
+                if(world[ninjaman.y][ninjaman.x-1] != 1){
+                    ninjaman.x--;
+                }
+                moveGhosts();
+            }
+            if(e.keyCode == 39){
+                if(world[ninjaman.y][ninjaman.x+1] != 1){
+                    ninjaman.x++;
+                }
+                moveGhosts();
+            }
+            if(e.keyCode == 38){
+                if(world[ninjaman.y-1][ninjaman.x] != 1){
+                    ninjaman.y--;
+                }
+                moveGhosts();
+            }
+            if(e.keyCode == 40){
+                if(world[ninjaman.y+1][ninjaman.x] != 1){
+                    ninjaman.y++;
+                }
+                moveGhosts();
+            } 
+            if (world[ninjaman.y][ninjaman.x] == 2){
+                score += 10;
+            }
+            if (world[ninjaman.y][ninjaman.x] == 3){
+                score += 5;
+            }
+            world[ninjaman.y][ninjaman.x] = 0;
+            drawNinjaman();
+            drawWorld();
+            updateScore();
+            loseLife();
+            updateLives();
+            checkWin();
+        }
+        // Keep Score (sushi = 10pts, onigiri = 5pts)
+        updateScore();
+        updateLives();
+        // Create Random World
+        generateWorld();
+        clearIsolated();
+        // Create Ghosts that Chase Ninjaman
+        drawWorld();
+    </script>
+</html>

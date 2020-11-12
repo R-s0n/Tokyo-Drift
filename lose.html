@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>What the Hell Happened???</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #intro {
+                height: 800px;
+                width: 800px;
+                background-color: blue;
+                text-align: center;
+                line-height: 2;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #intro button{
+                top: 700px;
+                height: 60px;
+                width: 200px;
+                background-color: black;
+                color: blue;
+                border-radius: 10px;
+                border-color: black;
+                font-weight: 1000;
+                font-size: large;
+                margin: 5;
+            }
+            #intro p {
+                font-weight: 1000;
+                margin: 2;
+                font-size: large;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id='intro'>
+            <h1>Tokyo Drift - The Game</h1>
+            <h2>~ Big Mouth Billy ~</h2>
+            <div id='giphy'></div>
+            <p>After barely getting started, Billy was mobbed with calls and had to go back to the office.  Looks like he will have to try again, tomorrow...</p>
+            <p>He blames you......</p>
+            <button onclick="play()">Try Again</button>
+            <script>
+                function play(){
+                    location.replace("game.html");
+                }
+                var rand = Math.floor(Math.random() * 9);
+                if (rand == 0){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/3ohzdNYjPSSEhSxF8Q" width="480" height="338" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/food-eating-hungry-3ohzdNYjPSSEhSxF8Q"></a></p>';
+                }
+                if (rand == 1){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/24FQQqXq1D5ramXqGs" width="480" height="315" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ImACelebrityAU-imacelebrityau-imacelebau-24FQQqXq1D5ramXqGs"></a></p>';
+                }
+                if (rand == 2){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/l0IynVnrO0Xob142c" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/food-eating-hungry-l0IynVnrO0Xob142c"></a></p>';
+                }
+                if (rand == 3){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/WS12xaVQyXbzd5FBXw" width="480" height="358" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/poptv-WS12xaVQyXbzd5FBXw"></a></p>';
+                }
+                if (rand == 4){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/12IErnf6Ldb9WU" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cute-yes-wants-12IErnf6Ldb9WU"></a></p>';
+                }
+                if (rand == 5){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/3ohzdFCn9mYfmuAmEU" width="480" height="359" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/food-eating-hungry-3ohzdFCn9mYfmuAmEU"></a></p>';
+                }
+                if (rand == 6){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/kXy6q2sunn9bW" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hungry-gif-kXy6q2sunn9bW"></a></p>';
+                }
+                if (rand == 7){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/mXIxz6vMz9Ffi" width="480" height="392" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/nicki-minaj-hungry-lunch-mXIxz6vMz9Ffi"></a></p>';
+                }
+                if (rand == 8){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/2WGRzLQJHTwBSxXk93" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/RobertEBlackmon-hungry-hangry-starving-2WGRzLQJHTwBSxXk93"></a></p>';
+                }
+                if (rand == 9){
+                    document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/7T8DEmrY6XNC90p7nX" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ubereats-hungry-hangry-starving-7T8DEmrY6XNC90p7nX"></a></p>';
+                }
+            </script>
+        </div>
+    </body>
+</html>

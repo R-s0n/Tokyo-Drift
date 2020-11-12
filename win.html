@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>You Did It!!!</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #intro {
+                height: 800px;
+                width: 800px;
+                background-color: blue;
+                text-align: center;
+                line-height: 2;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #intro button{
+                top: 700px;
+                height: 60px;
+                width: 200px;
+                background-color: black;
+                color: blue;
+                border-radius: 10px;
+                border-color: black;
+                font-weight: 1000;
+                font-size: large;
+                margin: 20;
+            }
+            #intro p {
+                font-weight: 1000;
+                margin: 2;
+                font-size: large;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id='intro'>
+            <h1>Tokyo Drift - The Game</h1>
+            <h2>~ Big Mouth Billy ~</h2>
+            <div id='giphy'></div>
+            <p>Congratulations!!  You managed to avoid the drifters long enough to finish a "Billy" sized meal!!</p>
+            <p>As a reward, Billy is going to let you in on a little secret...</p>
+            <button onclick="play()">Click For Secret</button>
+            <script>
+                function play(){
+                    location.replace("http://www.floppydiskrepairco.com/bigreddisk?rq=secret");
+                }
+                document.getElementById('giphy').innerHTML = '<iframe src="https://giphy.com/embed/oS0WvyfvJxDfq" width="480" height="240" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/parks-and-recreation-rec-chris-pratt-oS0WvyfvJxDfq"></a></p>';
+            </script>
+        </div>
+    </body>
+</html>

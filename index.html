@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Tokyo Drift</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #intro {
+                height: 800px;
+                width: 800px;
+                background-color: blue;
+                text-align: center;
+                line-height: 2;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #intro button{
+                top: 700px;
+                height: 60px;
+                width: 200px;
+                background-color: black;
+                color: blue;
+                border-radius: 10px;
+                border-color: black;
+                font-weight: 1000;
+                font-size: large;
+                margin: 5;
+            }
+            #intro p {
+                font-weight: 1000;
+                margin: 2;
+                font-size: large;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id='intro'>
+            <h1>Tokyo Drift - The Game</h1>
+            <h2>~ Big Mouth Billy ~</h2>
+            <iframe src="https://giphy.com/embed/rMS89RxHOzjGw" width="480" height="338" frameBorder="0"></iframe>
+            <p><a href="https://giphy.com/gifs/hungry-child-tantrum-rMS89RxHOzjGw"></a></p>
+            <p>In an effort to get a fleeting moment of peace, our hero Billy has snuck out of the Rapid7 office for a sushi lunch.</p>
+            <p>Unfortunately, right as his sushi arrived, the drifters set out on a mission to find him to help solve their endless problems.</p>
+            <p>Do you part and help Billy eat as much sushi as possible before he is caught by three drifters and has to go back to work!</p>
+            <p>If you help him eat enough, he may even let you in on a little secret...</p>
+            <button onclick="play()">Let's Eat!!</button>
+            <script>
+                function play(){
+                    location.replace("game.html");
+                }
+            </script>
+        </div>
+    </body>
+</html>
