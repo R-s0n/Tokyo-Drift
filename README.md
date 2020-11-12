@@ -1,7 +1,7 @@
 # Tokyo-Drift
 
 *****************************
-*  Tokyo Drift - The Game   *
+|  Tokyo Drift - The Game   |
 *****************************
 
 This is a going away present to the Tokyo Drift engineering team at Rapid7
@@ -11,7 +11,7 @@ It's been an absolute pleasure working with all of you!
 Cheers!!
                                
 *****************************
-*       Instructions        *
+|       Instructions        |
 *****************************
 
 Use the Arrow Keys to help Billy eat as much sushi as possible!  
